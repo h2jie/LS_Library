@@ -2,7 +2,6 @@ package com.example.hh.salle_library
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import android.view.MenuItem
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
@@ -15,9 +14,7 @@ class MainActivity : AppCompatActivity() {
         //TODO: https://developer.android.com/training/implementing-navigation/nav-drawer.html?hl=es-419
         //TODO http://www.sgoliver.net/blog/interfaz-de-usuario-en-android-navigation-drawer-navigationview/
 
-        nav_view.setNavigationItemSelectedListener { item: MenuItem ->
-
-        }
+        nav_view.setNavigationItemSelectedListener {  }
 
 
 
