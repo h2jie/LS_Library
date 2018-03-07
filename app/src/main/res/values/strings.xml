@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Salle_Library</string>
+    <string name="ls_library_string">LS Library</string>
+    <string name="favoritos_string">Favoritos</string>
+    <string name="salir_string">Salir</string>
+    <string name="nav_header_tittle">My header title</string>
 </resources>

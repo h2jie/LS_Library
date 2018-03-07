@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="large_letter_size">48sp</dimen>
+    <dimen name="nav_header_heigh_dp">192dp</dimen>
+    <dimen name="nav_header_padding_dp">16dp</dimen>
+</resources>
