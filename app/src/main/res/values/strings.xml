@@ -7,7 +7,7 @@
     <string name="username">Username:</string>
     <string name="username_et">Username</string>
     <string name="password">Password:</string>
-    <string name="password_et">Password</string>
+    <string name="password_et">Repeat Password</string>
     <string name="register">Register</string>
     <string name="repeat_password">Repeat Password:</string>
 </resources>

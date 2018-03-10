@@ -4,6 +4,9 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v7.widget.Toolbar
 import kotlinx.android.synthetic.main.activity_authentication.*
+import android.content.pm.ActivityInfo
+import kotlinx.android.synthetic.main.activity_authentication.view.*
+
 
 class AuthenticationActivity : AppCompatActivity() {
 
@@ -14,9 +17,11 @@ class AuthenticationActivity : AppCompatActivity() {
         setSupportActionBar(toolbar)
         view_pager.adapter = TabsAdapter(supportFragmentManager)
 
+
         tab_layout.setupWithViewPager(view_pager)
 
     }
+
 
 
 
