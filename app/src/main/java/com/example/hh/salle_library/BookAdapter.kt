@@ -40,8 +40,7 @@ class BookAdapter(var myBookList : ArrayList<Book>, var mContext : Context) : Re
         holder.author.text = book.bookAuthor
         holder.date.text = book.bookDate
         holder.desc.text = book.bookDesc
-        Glide.with(mContext).load(File(book.imageUrl.path)).into(holder.bookImg)
-
+        Glide.with(mContext).load(book.imageUrl).into(holder.bookImg)
     }
 
 }

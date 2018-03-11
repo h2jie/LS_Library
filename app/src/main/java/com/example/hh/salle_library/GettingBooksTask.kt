@@ -4,6 +4,7 @@ import android.os.AsyncTask
 import com.squareup.okhttp.OkHttpClient
 import com.squareup.okhttp.Request
 import com.squareup.okhttp.Response
+import org.json.JSONArray
 import org.json.JSONException
 import org.json.JSONObject
 import java.io.IOException
@@ -60,17 +61,33 @@ class GettingBooksTask(var name : String, mCallBack : taskCompletedListenner) : 
 
                 for (i in 0 until mJsonArray.length()){
                     var mJsonObjectItemInfo = mJsonArray.getJSONObject(i)
+
                     var mJsonObjectVolumeInfo = mJsonObjectItemInfo.getJSONObject("volumeInfo")
 
                     var itemTitle = mJsonObjectVolumeInfo["title"] as String
-                    var itemAuthorArray = mJsonObjectVolumeInfo.getJSONArray("authors")
-                    var itemAuthor = itemAuthorArray[0] as String
+
+                    var itemAuthor : String
+                    try {
+                        var itemAuthorArray : JSONArray = mJsonObjectVolumeInfo.getJSONArray("authors")
+                        itemAuthor = itemAuthorArray[0] as String
+
+                    }catch (e : JSONException){
+                        itemAuthor = "Anonimo"
+                    }
+
                     var itemDate = mJsonObjectVolumeInfo["publishedDate"] as String
-                    var itemDesc = mJsonObjectVolumeInfo["description"] as String
+                    var itemDesc : String
 
-                    var mJasonObjectVolumeImg = mJsonObjectVolumeInfo.getJSONObject("imageLinks")
+                    try {
+                        itemDesc = mJsonObjectVolumeInfo["description"] as String
+                    }catch (e : JSONException){
+                        itemDesc = "Descripción no disponible"
+                    }
 
-                    var itemImgUrl =  URI.create(mJasonObjectVolumeImg["smallThumbnail"] as String)
+                    var mJasonObjectVolumeImg : JSONObject = mJsonObjectVolumeInfo.getJSONObject("imageLinks")
+
+                    var itemImgUrlStr = mJasonObjectVolumeImg["smallThumbnail"] as String
+                    var itemImgUrl = URL(itemImgUrlStr)
 
                     var book = Book(itemImgUrl, itemTitle,itemAuthor,itemDate,itemDesc)
                     bookList.add(book)
