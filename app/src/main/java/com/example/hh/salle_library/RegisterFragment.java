@@ -1,8 +1,10 @@
 package com.example.hh.salle_library;
 
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -12,6 +14,12 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+
 
 /**
  * A simple {@link Fragment} subclass.
@@ -19,6 +27,8 @@ import android.widget.Toast;
 public class RegisterFragment extends Fragment implements View.OnClickListener {
 
     private SharedPreferences sharedPreferences;
+    private FirebaseAuth mAuth;
+
     SharedPreferences.Editor editor;
     Button btn_register;
     EditText et_username, et_password1, et_password2, et_email;
@@ -34,6 +44,8 @@ public class RegisterFragment extends Fragment implements View.OnClickListener {
                              Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.fragment_register, container, false);
+
+        mAuth = FirebaseAuth.getInstance();
 
         et_username = view.findViewById(R.id.et_username_reg);
         et_password1 = view.findViewById(R.id.et_password1_reg);
@@ -75,10 +87,29 @@ public class RegisterFragment extends Fragment implements View.OnClickListener {
         }else if (password1.length()<8){
             Toast.makeText(getActivity().getApplicationContext(),getString(R.string.needsMore8Characters),Toast.LENGTH_SHORT).show();
         }else{
-            editor.putString("Name",name);
+
+
+            mAuth.createUserWithEmailAndPassword(email, password2)
+                    .addOnCompleteListener(getActivity(), new OnCompleteListener<AuthResult>() {
+                        @Override
+                        public void onComplete(@NonNull Task<AuthResult> task) {
+                            if (task.isSuccessful()) {
+                                // Sign in success, update UI with the signed-in user's information
+                                FirebaseUser user = mAuth.getCurrentUser();
+                                Intent intent = new Intent(getContext(),MainScreen.class);
+                                startActivity(intent);
+
+                            } else {
+                                Toast.makeText(getContext(),"No se ha podido registarse",Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                    });
+
+
+            /*editor.putString("Name",name);
             editor.putString("Email",email);
             editor.putString("Password",password1);
-            editor.commit();
+            editor.commit();*/
 
             TabLayout tabLayout = getActivity().findViewById(R.id.tab_layout);
             TabLayout.Tab tab = tabLayout.getTabAt(1);

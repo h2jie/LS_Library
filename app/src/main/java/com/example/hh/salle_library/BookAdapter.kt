@@ -5,6 +5,7 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import com.bumptech.glide.Glide
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.book_item.view.*
@@ -15,12 +16,23 @@ import java.io.File
  */
 class BookAdapter(var myBookList : ArrayList<Book>, var mContext : Context) : RecyclerView.Adapter<BookAdapter.MyViewHolder>() {
 
-    class MyViewHolder (v : View) : RecyclerView.ViewHolder(v){
+    class MyViewHolder (v : View) : RecyclerView.ViewHolder(v), View.OnClickListener{
+
         var title = v.item_title
         var author = v.item_author
         var desc = v.item_desc
         var date = v.item_date
         var bookImg = v.item_image
+        var addbtn = v.item_add_btn
+
+        init {
+            v.item_add_btn.setOnClickListener(this)
+        }
+
+        override fun onClick(p0: View?) {
+            Toast.makeText(p0!!.context,"Funciona?",Toast.LENGTH_LONG).show()
+
+        }
 
     }
 
