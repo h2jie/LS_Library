@@ -4,20 +4,24 @@ import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.design.widget.NavigationView
-import android.support.v7.widget.LinearLayoutManager
+import android.support.v7.widget.DefaultItemAnimator
+import android.support.v7.widget.GridLayoutManager
+import android.support.v7.widget.RecyclerView
 import android.view.Gravity
 import android.view.MenuItem
 import com.example.hh.salle_library.R.id.nav_fav
 import kotlinx.android.synthetic.main.activity_main_screen.*
 import kotlinx.android.synthetic.main.content_layout.*
-import java.net.URI
 
 class MainScreen : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener, taskCompletedListenner {
 
-    private lateinit var linearLayoutManager: LinearLayoutManager
-
-    private lateinit var adapter: RecyclerAdapter
     var bookList : ArrayList<Book> = ArrayList()
+
+    private lateinit var recyclerView : RecyclerView
+    private  lateinit var bookAdapter: BookAdapter
+
+
+
 
     private var mCallback : taskCompletedListenner = this
 
@@ -25,8 +29,6 @@ class MainScreen : AppCompatActivity(), NavigationView.OnNavigationItemSelectedL
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        var book = Book(URI(""), "nicotine","heroine","need","perdona?")
-        bookList.add(book)
         var myTask = GettingBooksTask("fools", mCallback)
         myTask.execute()
 
@@ -37,9 +39,13 @@ class MainScreen : AppCompatActivity(), NavigationView.OnNavigationItemSelectedL
         supportActionBar!!.setHomeAsUpIndicator(R.drawable.ic_menu)
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
 
-        linearLayoutManager = LinearLayoutManager(this)
-        linearLayoutManager.orientation = LinearLayoutManager.VERTICAL
-        main_recycler_view.layoutManager = linearLayoutManager
+        recyclerView = main_recycler_view
+        bookAdapter = BookAdapter(bookList, this)
+        val mLayoutManager = GridLayoutManager(this, 2)
+        recyclerView.layoutManager = mLayoutManager
+
+        recyclerView.itemAnimator = DefaultItemAnimator()
+        recyclerView.adapter = bookAdapter
 
 
     }
@@ -48,9 +54,8 @@ class MainScreen : AppCompatActivity(), NavigationView.OnNavigationItemSelectedL
         for (i in 0 until mList.size){
             bookList.add(mList[i])
         }
-        //adapter = RecyclerAdapter(mList)
-        adapter = RecyclerAdapter(bookList)
-        adapter.notifyItemChanged(bookList.size)
+        recyclerView.adapter.notifyDataSetChanged()
+
 
     }
 

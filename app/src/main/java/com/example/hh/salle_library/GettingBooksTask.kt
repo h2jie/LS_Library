@@ -14,7 +14,7 @@ import java.net.URL
 /**
  * Created by Bhupinder Kumar on 11/03/2018.
  */
-class GettingBooksTask(var name : String, var mCallBack : taskCompletedListenner) : AsyncTask<URL,Integer,ArrayList<Book>>() {
+class GettingBooksTask(var name : String, mCallBack : taskCompletedListenner) : AsyncTask<URL,Integer,ArrayList<Book>>() {
 
     var bookList : ArrayList<Book> = ArrayList<Book>()
     var delegate = mCallBack
@@ -58,22 +58,21 @@ class GettingBooksTask(var name : String, var mCallBack : taskCompletedListenner
 
                 var mJsonArray = responseJson.getJSONArray("items")
 
-                for (i in 0..19){
+                for (i in 0 until mJsonArray.length()){
                     var mJsonObjectItemInfo = mJsonArray.getJSONObject(i)
                     var mJsonObjectVolumeInfo = mJsonObjectItemInfo.getJSONObject("volumeInfo")
 
                     var itemTitle = mJsonObjectVolumeInfo["title"] as String
-                    //var itemAuthorArray = mJsonObjectVolumeInfo.getJSONArray("authors")
-                    //var itemAuthor = itemAuthorArray[0] as String
+                    var itemAuthorArray = mJsonObjectVolumeInfo.getJSONArray("authors")
+                    var itemAuthor = itemAuthorArray[0] as String
                     var itemDate = mJsonObjectVolumeInfo["publishedDate"] as String
-                    //var itemDesc = mJsonObjectVolumeInfo["description"] as String
+                    var itemDesc = mJsonObjectVolumeInfo["description"] as String
 
                     var mJasonObjectVolumeImg = mJsonObjectVolumeInfo.getJSONObject("imageLinks")
 
-                    //var itemImgUrl = mJasonObjectVolumeImg["smallThumbnail"] as String
                     var itemImgUrl =  URI.create(mJasonObjectVolumeImg["smallThumbnail"] as String)
 
-                    var book = Book(itemImgUrl, itemTitle,"holas",itemDate,"perdona?")
+                    var book = Book(itemImgUrl, itemTitle,itemAuthor,itemDate,itemDesc)
                     bookList.add(book)
                 }
             }
