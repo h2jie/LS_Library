@@ -25,7 +25,7 @@ public class ListAddFavView extends RelativeLayout implements View.OnClickListen
     private OnButtonClickedListener mCallback = null;
 
     public interface OnButtonClickedListener{
-        public void onButtonClicked(ListAddFavView source, String text);
+        void onButtonClicked(ListAddFavView source, String text);
     }
 
     public ListAddFavView(Context context) {

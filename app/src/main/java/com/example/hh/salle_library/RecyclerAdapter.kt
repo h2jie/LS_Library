@@ -12,11 +12,14 @@ import kotlinx.android.synthetic.main.book_item.view.*
  */
 class RecyclerAdapter(private val books : ArrayList<Book>) : RecyclerView.Adapter<RecyclerAdapter.BookHolder>() {
 
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerAdapter.BookHolder{
         val inflatedView = parent.inflate(R.layout.book_item, false)
         return BookHolder(inflatedView)    }
 
-    override fun getItemCount() = books.size
+    override fun getItemCount(): Int {
+        return books.size
+    }
 
 
     override fun onBindViewHolder(holder: RecyclerAdapter.BookHolder, position: Int) {
@@ -45,7 +48,7 @@ class RecyclerAdapter(private val books : ArrayList<Book>) : RecyclerView.Adapte
 
         fun bindBook(book : Book){
             this.book = book
-            Picasso.get().load(book.imageUrl).into(view.item_image)
+            Picasso.get().load(book.imageUrl.path).into(view.item_image)
             view.item_author.text = book.bookAuthor
             view.item_title.text = book.bookTitle
             view.item_date.text = book.bookDate
