@@ -9,7 +9,7 @@ class SplashActivity : AppCompatActivity() {
 
 
     private var mDelayHandler: Handler? = null
-    private val SPLASH_DELAY: Long = 5000 //5 seconds
+    private val SPLASH_DELAY: Long = 3000
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
