@@ -70,21 +70,26 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
                 userPassword = sharedPreferences.getString("Password","");
             }
 
-            if (userName.equals(userName) && password.equals(userPassword)){
-                userSession.CreateUserLoginSession(userName,userPassword);
+            try{
+                if (userName.equals(userName) && password.equals(userPassword)){
+                    userSession.CreateUserLoginSession(userName,userPassword);
 
-                Intent intent= new Intent(getActivity().getApplicationContext(),MainActivity.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    Intent intent= new Intent(getActivity().getApplicationContext(),MainActivity.class);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 
-                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                startActivity(intent);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    startActivity(intent);
 
-
-            }else{
-                Toast.makeText(getActivity().getApplicationContext(),
-                        R.string.usernameOrPassIncorrect,
-                        Toast.LENGTH_LONG).show();
+                }else{
+                    Toast.makeText(getActivity().getApplicationContext(),
+                            R.string.usernameOrPassIncorrect,
+                            Toast.LENGTH_LONG).show();
+                }
+            }catch (NullPointerException e){
+                Toast.makeText(getActivity().getApplicationContext(),R.string.usernameOrPassIncorrect,Toast.LENGTH_LONG).show();
             }
+
+
         }else{
             Toast.makeText(getActivity().getApplicationContext(),
                     R.string.enterUsernameAndPass,

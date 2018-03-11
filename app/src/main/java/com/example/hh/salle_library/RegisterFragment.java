@@ -68,6 +68,12 @@ public class RegisterFragment extends Fragment implements View.OnClickListener {
             Toast.makeText(getActivity().getApplicationContext(),getString(R.string.needPass2),Toast.LENGTH_SHORT).show();
         }else if (!password1.equals(password2)){
             Toast.makeText(getActivity().getApplicationContext(),getString(R.string.pass1IsDifferentPass2),Toast.LENGTH_SHORT).show();
+        }else if (!password1.equals(password2)){
+            Toast.makeText(getActivity().getApplicationContext(),getString(R.string.pass1IsDifferentPass2),Toast.LENGTH_SHORT).show();
+        }else if (!email.contains("@") || !email.contains(".")){
+            Toast.makeText(getActivity().getApplicationContext(),getString(R.string.invalidEmail),Toast.LENGTH_SHORT).show();
+        }else if (password1.length()<8){
+            Toast.makeText(getActivity().getApplicationContext(),getString(R.string.needsMore8Characters),Toast.LENGTH_SHORT).show();
         }else{
             editor.putString("Name",name);
             editor.putString("Email",email);

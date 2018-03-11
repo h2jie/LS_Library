@@ -75,7 +75,7 @@ public class UserSession {
         editor.clear();
         editor.commit();
 
-        Intent intent = new Intent(_context, MainActivity.class);
+        Intent intent = new Intent(_context, AuthenticationActivity.class);
 
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
