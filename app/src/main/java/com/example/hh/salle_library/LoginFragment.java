@@ -38,6 +38,18 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
 
         userSession = new UserSession(getActivity().getApplicationContext());
 
+        if (!userSession.CheckLogin()){
+            Intent intent= new Intent(getActivity().getApplicationContext(),MainScreen.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(intent);
+        }
+
+
+
+        userSession = new UserSession(getActivity().getApplicationContext());
+
         et_username = view.findViewById(R.id.et_username_login);
         et_password = view.findViewById(R.id.et_password_login);
 
@@ -74,7 +86,7 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
                 if (userName.equals(userName) && password.equals(userPassword)){
                     userSession.CreateUserLoginSession(userName,userPassword);
 
-                    Intent intent= new Intent(getActivity().getApplicationContext(),MainActivity.class);
+                    Intent intent= new Intent(getActivity().getApplicationContext(),MainScreen.class);
                     intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 
                     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);

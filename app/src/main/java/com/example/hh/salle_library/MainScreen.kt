@@ -1,5 +1,6 @@
 package com.example.hh.salle_library
 
+import android.app.PendingIntent.getActivity
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
@@ -9,6 +10,7 @@ import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.view.Gravity
 import android.view.MenuItem
+import com.example.hh.salle_library.R.id.logout
 import com.example.hh.salle_library.R.id.nav_fav
 import kotlinx.android.synthetic.main.activity_main_screen.*
 import kotlinx.android.synthetic.main.content_layout.*
@@ -17,8 +19,12 @@ class MainScreen : AppCompatActivity(), NavigationView.OnNavigationItemSelectedL
 
     var bookList : ArrayList<Book> = ArrayList()
 
+
     private lateinit var recyclerView : RecyclerView
     private  lateinit var bookAdapter: BookAdapter
+
+    //var userSession= UserSession(this)
+
 
 
 
@@ -31,6 +37,8 @@ class MainScreen : AppCompatActivity(), NavigationView.OnNavigationItemSelectedL
         super.onCreate(savedInstanceState)
         var myTask = GettingBooksTask("fools", mCallback)
         myTask.execute()
+
+
 
 
         setContentView(R.layout.activity_main_screen)
@@ -64,6 +72,10 @@ class MainScreen : AppCompatActivity(), NavigationView.OnNavigationItemSelectedL
             nav_fav -> {
                 val intent = Intent(this, FavoriteActivity::class.java)
                 startActivity(intent)
+            }
+            logout ->{
+                //userSession = UserSession(getApplicationContext())
+                //userSession.LogOut()
             }
         }
         drawer_layout.closeDrawers()

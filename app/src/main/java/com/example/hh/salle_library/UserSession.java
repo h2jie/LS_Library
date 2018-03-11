@@ -72,6 +72,7 @@ public class UserSession {
 
     //Eliminar session details
     public void LogOut(){
+
         editor.clear();
         editor.commit();
 

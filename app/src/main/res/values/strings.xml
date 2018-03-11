@@ -25,4 +25,5 @@
     <string name="needsMore8Characters">The password needs more that 8 characters</string>
     <string name="username_string">Username</string>
     <string name="favoritos_string">Favoritos</string>
+    <string name="logout">logout</string>
 </resources>

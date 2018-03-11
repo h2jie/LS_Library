@@ -5,4 +5,10 @@
         android:icon="@drawable/ic_favorite"
         android:title="@string/favoritos_string"/>
 
+    <item
+        android:id="@+id/logout"
+        android:title="@string/logout"
+        android:icon="@drawable/ic_exit_to_app"
+        />
+
 </menu>
