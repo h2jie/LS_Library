@@ -6,7 +6,8 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.hh.salle_library.SplashActivity">
+    tools:context="com.example.hh.salle_library.SplashActivity"
+    >
 
     <ImageView
         android:id="@+id/img_library"
