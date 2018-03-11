@@ -7,7 +7,18 @@
     <string name="username">Username:</string>
     <string name="username_et">Username</string>
     <string name="password">Password:</string>
-    <string name="password_et">Repeat Password</string>
+    <string name="re_password_et">Repeat Password</string>
+    <string name="password_et">Password</string>
     <string name="register">Register</string>
     <string name="repeat_password">Repeat Password:</string>
+    <string name="e_mail">E-mail</string>
+    <string name="e_mail_tv">E-mail:</string>
+    <string name="needName">Need Name</string>
+    <string name="needemail">Need E-mail</string>
+    <string name="needPass1">Need Password</string>
+    <string name="needPass2">Need Repeat Password</string>
+    <string name="pass1IsDifferentPass2">Passwords do not match</string>
+    <string name="alreadyRegistered">You are already registered</string>
+    <string name="usernameOrPassIncorrect">Username/Password is incorrect</string>
+    <string name="enterUsernameAndPass">Please enter username and password</string>
 </resources>
