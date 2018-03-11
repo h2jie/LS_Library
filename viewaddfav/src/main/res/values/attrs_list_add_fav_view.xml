@@ -1,0 +1,19 @@
+<resources>
+    <declare-styleable name="ListAddFavViewNewOne">
+        <attr name="textSizeAll" format="dimension"/>
+        <attr name="authorText" format="string"/>
+        <attr name="itemTitleSize" format="dimension"/>
+        <attr name="dateText" format="string"/>
+        <attr name="descText" format="string"/>
+        <attr name="titleText" format="string"/>
+        <attr name="itemVisibilityAddBtn">
+            <flag name="visible" value="1" />
+            <flag name="invisible" value="0"/>
+        </attr>
+        <attr name="itemVisibilityDeleteBtn">
+            <flag name="visible" value="1" />
+            <flag name="invisible" value="0"/>
+        </attr>
+    </declare-styleable>
+
+</resources>
