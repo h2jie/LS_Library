@@ -13,6 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -28,14 +29,10 @@ import com.google.firebase.auth.UserProfileChangeRequest;
  */
 public class RegisterFragment extends Fragment implements View.OnClickListener {
 
-    private SharedPreferences sharedPreferences;
     private FirebaseAuth mAuth;
-
-    SharedPreferences.Editor editor;
     Button btn_register;
     EditText et_username, et_password1, et_password2, et_email;
-    UserSession session;
-
+    TextView usernmae;
     public RegisterFragment() {
         // Required empty public constructor
     }
@@ -54,11 +51,6 @@ public class RegisterFragment extends Fragment implements View.OnClickListener {
         et_password2 = view.findViewById(R.id.et_password2_reg);
         et_email = view.findViewById(R.id.et_email_reg);
         btn_register = view.findViewById(R.id.btn_register);
-
-        sharedPreferences = getActivity().getApplicationContext().getSharedPreferences("Reg",0);
-
-        editor = sharedPreferences.edit();
-
         btn_register.setOnClickListener(this);
 
         // Inflate the layout for this fragment
@@ -105,23 +97,18 @@ public class RegisterFragment extends Fragment implements View.OnClickListener {
                                 user.updateProfile(profileUpdates);
                                 Intent intent = new Intent(getContext(),MainScreen.class);
                                 startActivity(intent);
+                                getActivity().finish();
 
                             } else {
-                                Toast.makeText(getContext(),"No se ha podido registarse",Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getContext(), getString(R.string.couldNotRegister),Toast.LENGTH_SHORT).show();
                             }
                         }
                     });
 
-
-            /*editor.putString("Name",name);
-            editor.putString("Email",email);
-            editor.putString("Password",password1);
-            editor.commit();*/
-
             TabLayout tabLayout = getActivity().findViewById(R.id.tab_layout);
             TabLayout.Tab tab = tabLayout.getTabAt(1);
             tab.select();
-            Toast.makeText(getActivity().getApplicationContext(),getString(R.string.alreadyRegistered),Toast.LENGTH_SHORT).show();
+
         }
 
     }
