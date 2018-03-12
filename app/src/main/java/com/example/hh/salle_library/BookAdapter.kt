@@ -47,10 +47,19 @@ class BookAdapter(var myBookList : ArrayList<Book>, var mContext : Context) : Re
             var mBook : Book? = null
             mBook = Book(imgUrl!!, itemTitle!!, itemAutor!!, itemDate!!, itemDesc!!)
             if (mBook != null) {
-                var gson = Gson()
+
+                var mBooks : ArrayList<Book>
+                //mBooks = getSavedObjectFromPreference(p!!.context,"mPrefData",FirebaseAuth.getInstance().currentUser!!.uid, ArrayList<>)
+
+
+                saveObjectToSharedPreference(p!!.context, "mPrefData",mUser!!.uid,mBook)
+
+
+                /*var gson = Gson()
                 var serializedObject = gson.toJson(mBook)
 
                 var mBookJsonStr = Gson().toJson(mBook)
+
 
                 //saveObjectToSharedPreference(p!!.context)
 
@@ -58,7 +67,7 @@ class BookAdapter(var myBookList : ArrayList<Book>, var mContext : Context) : Re
 
 
                 editor.putString(mUser!!.uid,mBookJsonStr)
-                editor.commit()
+                editor.commit()*/
                 Toast.makeText(p!!.context,"Funciona?",Toast.LENGTH_LONG).show()
             }
         }

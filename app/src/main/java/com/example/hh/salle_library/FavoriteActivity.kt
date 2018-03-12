@@ -23,11 +23,13 @@ class FavoriteActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_favorite)
 
-        val connectionsJSONString = getPreferences(Context.MODE_PRIVATE).getString(FirebaseAuth.getInstance().currentUser!!.uid, null)
+        /*val connectionsJSONString = getPreferences(Context.MODE_PRIVATE).getString(FirebaseAuth.getInstance().currentUser!!.uid, null)
         val type = object : TypeToken<Book>() {}.type
         val mbook = Gson().fromJson<Book>(connectionsJSONString,type)
-        //val connections = Gson().fromJson(connectionsJSONString, type)
-        bookList.add(mbook)
+        //val connections = Gson().fromJson(connectionsJSONString, type)*/
+        val mbook = getSavedObjectFromPreference(this,"mPref",FirebaseAuth.getInstance().currentUser!!.uid, Book::class.java)
+
+        bookList.add(mbook!!)
 
         recyclerView = fav_recycler
         bookAdapter = BookAdapter(bookList, this)
