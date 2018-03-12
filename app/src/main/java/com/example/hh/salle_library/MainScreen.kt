@@ -10,8 +10,9 @@ import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.view.Gravity
 import android.view.MenuItem
-import com.example.hh.salle_library.R.id.logout
-import com.example.hh.salle_library.R.id.nav_fav
+import android.widget.TextView
+import com.example.hh.salle_library.R.id.*
+import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.activity_main_screen.*
 import kotlinx.android.synthetic.main.content_layout.*
 
@@ -55,6 +56,11 @@ class MainScreen : AppCompatActivity(), NavigationView.OnNavigationItemSelectedL
         recyclerView.itemAnimator = DefaultItemAnimator()
         recyclerView.adapter = bookAdapter
 
+        var header = nav_menu.getHeaderView(0)
+        var name = header.findViewById<TextView>(R.id.usernmae)
+        if (name != null) {
+            name.text = FirebaseAuth.getInstance().currentUser!!.displayName
+        }
 
     }
 
@@ -74,8 +80,8 @@ class MainScreen : AppCompatActivity(), NavigationView.OnNavigationItemSelectedL
                 startActivity(intent)
             }
             logout ->{
-                //userSession = UserSession(getApplicationContext())
-                //userSession.LogOut()
+                FirebaseAuth.getInstance().signOut()
+                finish()
             }
         }
         drawer_layout.closeDrawers()
