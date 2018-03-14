@@ -11,7 +11,7 @@
     <string name="password_et">Password</string>
     <string name="register">Register</string>
     <string name="repeat_password">Repeat Password:</string>
-    <string name="e_mail">E-mail</string>
+    <string name="et_e_mail">E-mail</string>
     <string name="e_mail_tv">E-mail:</string>
     <string name="needName">Need Name</string>
     <string name="needemail">Need E-mail</string>
@@ -26,4 +26,7 @@
     <string name="username_string">Username</string>
     <string name="favoritos_string">Favoritos</string>
     <string name="logout">logout</string>
+    <string name="couldNotRegister">Could not register</string>
+    <string name="tv_email">E-mail:</string>
+    <string name="e_mail">E-mail</string>
 </resources>

@@ -9,7 +9,7 @@ import java.util.HashMap;
 /**
  * Created by HangjieHuang on 2018/3/11.
  */
-
+/*
 public class UserSession {
 
     private SharedPreferences sharedPreferences;
@@ -83,4 +83,4 @@ public class UserSession {
 
         _context.startActivity(intent);
     }
-}
+}*/

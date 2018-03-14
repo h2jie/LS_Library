@@ -25,7 +25,7 @@ class MainScreen : AppCompatActivity(), NavigationView.OnNavigationItemSelectedL
     private  lateinit var bookAdapter: BookAdapter
 
     //var userSession= UserSession(this)
-
+    var mAuth = FirebaseAuth.getInstance()
 
 
 
@@ -50,16 +50,21 @@ class MainScreen : AppCompatActivity(), NavigationView.OnNavigationItemSelectedL
 
         recyclerView = main_recycler_view
         bookAdapter = BookAdapter(bookList, this)
-        val mLayoutManager = GridLayoutManager(this, 2)
+        val mLayoutManager = GridLayoutManager(this, 1)
         recyclerView.layoutManager = mLayoutManager
 
         recyclerView.itemAnimator = DefaultItemAnimator()
         recyclerView.adapter = bookAdapter
 
         var header = nav_menu.getHeaderView(0)
-        var name = header.findViewById<TextView>(R.id.usernmae)
+        var name = header.findViewById<TextView>(R.id.currentuser)
         if (name != null) {
             name.text = FirebaseAuth.getInstance().currentUser!!.displayName
+        }
+
+        var email = header.findViewById<TextView>(R.id.currentemail)
+        if(email != null){
+            email.text = FirebaseAuth.getInstance().currentUser!!.email
         }
 
     }
@@ -80,7 +85,9 @@ class MainScreen : AppCompatActivity(), NavigationView.OnNavigationItemSelectedL
                 startActivity(intent)
             }
             logout ->{
-                FirebaseAuth.getInstance().signOut()
+                mAuth.signOut()
+                val intent = Intent(this, AuthenticationActivity::class.java)
+                startActivity(intent)
                 finish()
             }
         }
