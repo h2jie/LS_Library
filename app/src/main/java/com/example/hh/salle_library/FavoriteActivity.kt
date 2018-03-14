@@ -12,12 +12,13 @@ import com.google.gson.reflect.TypeToken
 import kotlinx.android.synthetic.main.activity_favorite.*
 
 
-class FavoriteActivity : AppCompatActivity() {
+class FavoriteActivity : AppCompatActivity(), taskCompletedListenner{
 
     var bookList : ArrayList<Book> = ArrayList()
 
     private lateinit var recyclerView : RecyclerView
     private  lateinit var bookAdapter: BookAdapter
+    private var mCallback : taskCompletedListenner = this
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,15 +40,17 @@ class FavoriteActivity : AppCompatActivity() {
 
 
         recyclerView = fav_recycler
-        bookAdapter = BookAdapter(bookList, this)
+        bookAdapter = BookAdapter(bookList, this,"any",this)
         val mLayoutManager = GridLayoutManager(this, 1)
         recyclerView.layoutManager = mLayoutManager
 
         recyclerView.itemAnimator = DefaultItemAnimator()
         recyclerView.adapter = bookAdapter
 
+    }
 
-
-
+    override fun taskCompleted(mList: ArrayList<Book>) {
+        bookList = mList
+        recyclerView.adapter.notifyDataSetChanged() //TODO: Crear otro adapter para solo esta lista.
     }
 }

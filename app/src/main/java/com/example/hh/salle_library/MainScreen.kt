@@ -49,7 +49,7 @@ class MainScreen : AppCompatActivity(), NavigationView.OnNavigationItemSelectedL
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
 
         recyclerView = main_recycler_view
-        bookAdapter = BookAdapter(bookList, this)
+        bookAdapter = BookAdapter(bookList, this,"main",null) //No he sabido como utilizar bien el constructor secundario en kotlin...
         val mLayoutManager = GridLayoutManager(this, 1)
         recyclerView.layoutManager = mLayoutManager
 
