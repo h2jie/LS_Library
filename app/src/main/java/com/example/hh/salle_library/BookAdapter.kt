@@ -12,6 +12,7 @@ import com.google.gson.Gson
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.book_item.view.*
 import java.io.File
+import java.io.IOException
 import java.net.URL
 
 /**
@@ -38,37 +39,24 @@ class BookAdapter(var myBookList : ArrayList<Book>, var mContext : Context) : Re
         var mUser = FirebaseAuth.getInstance().currentUser
         var sharedPref = v.context.getSharedPreferences(mUser!!.uid,Context.MODE_PRIVATE)
         var editor = sharedPref.edit()
+        var context = v.context
 
         init {
             addbtn.setOnClickListener(this)
         }
-
         override fun onClick(p: View?) {
             var mBook : Book? = null
             mBook = Book(imgUrl!!, itemTitle!!, itemAutor!!, itemDate!!, itemDesc!!)
-            if (mBook != null) {
 
-                var mBooks : ArrayList<Book>
-                //mBooks = getSavedObjectFromPreference(p!!.context,"mPrefData",FirebaseAuth.getInstance().currentUser!!.uid, ArrayList<>)
-
-
-                saveObjectToSharedPreference(p!!.context, "mPrefData",mUser!!.uid,mBook)
-
-
-                /*var gson = Gson()
-                var serializedObject = gson.toJson(mBook)
-
-                var mBookJsonStr = Gson().toJson(mBook)
-
-
-                //saveObjectToSharedPreference(p!!.context)
-
-
-
-
-                editor.putString(mUser!!.uid,mBookJsonStr)
-                editor.commit()*/
-                Toast.makeText(p!!.context,"Funciona?",Toast.LENGTH_LONG).show()
+            var mBooks = ArrayList<Book>()
+            try {
+                mBooks = ObjectSerializer.deserialize(sharedPref.getString("books",ObjectSerializer.serialize(ArrayList<Book>()))) as ArrayList<Book>
+                mBooks.add(mBook)
+                editor.putString("books",ObjectSerializer.serialize(mBooks))
+                editor.commit()
+                Toast.makeText(p!!.context,"Added ${mBook.bookTitle} to favorite",Toast.LENGTH_SHORT).show()
+            }catch (e: IOException){
+                print(e.message)
             }
         }
     }

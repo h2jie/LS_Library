@@ -50,7 +50,7 @@ class MainScreen : AppCompatActivity(), NavigationView.OnNavigationItemSelectedL
 
         recyclerView = main_recycler_view
         bookAdapter = BookAdapter(bookList, this)
-        val mLayoutManager = GridLayoutManager(this, 2)
+        val mLayoutManager = GridLayoutManager(this, 1)
         recyclerView.layoutManager = mLayoutManager
 
         recyclerView.itemAnimator = DefaultItemAnimator()
