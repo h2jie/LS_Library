@@ -13,20 +13,20 @@
         android:textStyle="bold"
         android:textSize="20dp"
         android:layout_gravity="bottom"
-        android:layout_marginBottom="30dp"
-        android:layout_marginLeft="10dp"
+        android:layout_marginBottom="@dimen/margin_30_dp"
+        android:layout_marginLeft="@dimen/margin_10"
         android:layout_marginTop="@dimen/marginTop_20"/>
 
     <TextView
         android:id="@+id/currentemail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="email"
-        android:textSize="15dp"
+        android:text="@string/email_string"
+        android:textSize="@dimen/padding_15"
         android:textStyle="bold"
         android:layout_gravity="bottom"
-        android:layout_marginBottom="10dp"
-        android:layout_marginLeft="10dp" />
+        android:layout_marginBottom="@dimen/margin_10"
+        android:layout_marginLeft="@dimen/margin_10" />
 
 
 </FrameLayout>

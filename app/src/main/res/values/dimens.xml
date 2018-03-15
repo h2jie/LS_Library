@@ -5,4 +5,13 @@
     <dimen name="marginTop_10">10dp</dimen>
     <dimen name="padding_15">15dp</dimen>
     <dimen name="margin_10">10dp</dimen>
+    <dimen name="medium_large_text_size">20sp</dimen>
+    <dimen name="sp_text_size_18">18sp</dimen>
+    <dimen name="normal_padding">15dp</dimen>
+    <dimen name="margin_left_10dp">10dp</dimen>
+    <dimen name="margin_30_dp">30dp</dimen>
+    <dimen name="size_70_dp">70dp</dimen>
+    <dimen name="margin_6_dp">6dp</dimen>
+    <dimen name="margin_3_dp">3dp</dimen>
+    <dimen name="margin_4_dp">4dp</dimen>
 </resources>

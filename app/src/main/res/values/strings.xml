@@ -29,4 +29,6 @@
     <string name="couldNotRegister">Could not register</string>
     <string name="tv_email">E-mail:</string>
     <string name="e_mail">E-mail</string>
+    <string name="example_text">Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500, cuando un impresor (N. del T. persona que se dedica a la imprenta) desconocido usó una galería de textos y los mezcló</string>
+    <string name="email_string">email</string>
 </resources>

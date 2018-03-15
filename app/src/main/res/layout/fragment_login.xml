@@ -28,7 +28,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/marginTop_50"
             android:text="@string/tv_email"
-            android:textSize="20sp" />
+            android:textSize="@dimen/medium_large_text_size" />
 
         <EditText
             android:id="@+id/et_email_login"
@@ -43,7 +43,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/marginTop_20"
             android:text="@string/password"
-            android:textSize="20sp" />
+            android:textSize="@dimen/medium_large_text_size" />
 
         <EditText
             android:id="@+id/et_password_login"
