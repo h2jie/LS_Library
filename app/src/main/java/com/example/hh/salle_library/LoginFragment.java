@@ -34,30 +34,23 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
         // Required empty public constructor
     }
 
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-
         mAuth = FirebaseAuth.getInstance();
 
-
-        if (mAuth.getCurrentUser()!=null){
+        if (mAuth.getCurrentUser() != null) {
             goToMainScreen();
 
         }
         View view = inflater.inflate(R.layout.fragment_login, container, false);
 
-
         et_username = view.findViewById(R.id.et_email_login);
         et_password = view.findViewById(R.id.et_password_login);
-
-
 
         btn_login = view.findViewById(R.id.btn_login);
 
         btn_login.setOnClickListener(this);
-
 
         return view;
     }
@@ -67,44 +60,34 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
         String username = et_username.getText().toString();
         String password = et_password.getText().toString();
 
-        if (!username.isEmpty() && !password.isEmpty()){
+        if (!username.isEmpty() && !password.isEmpty()) {
             mAuth.signInWithEmailAndPassword(username, password)
                     .addOnCompleteListener(getActivity(), new OnCompleteListener<AuthResult>() {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if (task.isSuccessful()) {
-
                                 FirebaseUser user = mAuth.getCurrentUser();
                                 goToMainScreen();
                                 getActivity().finish();
                             } else {
-
                                 Toast.makeText(getContext(), getString(R.string.usernameOrPassIncorrect), Toast.LENGTH_SHORT).show();
-
                             }
-
-                            // ...
                         }
                     });
-
-        }else{
+        } else {
             Toast.makeText(getActivity().getApplicationContext(),
                     R.string.enterUsernameAndPass,
                     Toast.LENGTH_LONG).show();
         }
-
-
-
-
     }
 
 
-    void goToMainScreen(){
-        Intent intent= new Intent(getActivity().getApplicationContext(),MainScreen.class);
+    void goToMainScreen() {
+        Intent intent = new Intent(getActivity().getApplicationContext(), MainScreen.class);
         /*intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);*/
         startActivity(intent);
+        getActivity().finish();
 
     }
 }

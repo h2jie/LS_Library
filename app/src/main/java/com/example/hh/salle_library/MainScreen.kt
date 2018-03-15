@@ -1,6 +1,5 @@
 package com.example.hh.salle_library
 
-import android.app.PendingIntent.getActivity
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
@@ -49,7 +48,7 @@ class MainScreen : AppCompatActivity(), NavigationView.OnNavigationItemSelectedL
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
 
         recyclerView = main_recycler_view
-        bookAdapter = BookAdapter(bookList, this,"main",null) //No he sabido como utilizar bien el constructor secundario en kotlin...
+        bookAdapter = BookAdapter(bookList, this,"main",null)
         val mLayoutManager = GridLayoutManager(this, 1)
         recyclerView.layoutManager = mLayoutManager
 
