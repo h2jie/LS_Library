@@ -1,6 +1,5 @@
 package com.example.hh.salle_library
 
-import android.app.PendingIntent.getActivity
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
@@ -10,8 +9,9 @@ import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.view.Gravity
 import android.view.MenuItem
-import com.example.hh.salle_library.R.id.logout
-import com.example.hh.salle_library.R.id.nav_fav
+import android.widget.TextView
+import com.example.hh.salle_library.R.id.*
+import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.activity_main_screen.*
 import kotlinx.android.synthetic.main.content_layout.*
 
@@ -24,7 +24,7 @@ class MainScreen : AppCompatActivity(), NavigationView.OnNavigationItemSelectedL
     private  lateinit var bookAdapter: BookAdapter
 
     //var userSession= UserSession(this)
-
+    var mAuth = FirebaseAuth.getInstance()
 
 
 
@@ -48,13 +48,23 @@ class MainScreen : AppCompatActivity(), NavigationView.OnNavigationItemSelectedL
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
 
         recyclerView = main_recycler_view
-        bookAdapter = BookAdapter(bookList, this)
-        val mLayoutManager = GridLayoutManager(this, 2)
+        bookAdapter = BookAdapter(bookList, this,"main",null)
+        val mLayoutManager = GridLayoutManager(this, 1)
         recyclerView.layoutManager = mLayoutManager
 
         recyclerView.itemAnimator = DefaultItemAnimator()
         recyclerView.adapter = bookAdapter
 
+        var header = nav_menu.getHeaderView(0)
+        var name = header.findViewById<TextView>(R.id.currentuser)
+        if (name != null) {
+            name.text = FirebaseAuth.getInstance().currentUser!!.displayName
+        }
+
+        var email = header.findViewById<TextView>(R.id.currentemail)
+        if(email != null){
+            email.text = FirebaseAuth.getInstance().currentUser!!.email
+        }
 
     }
 
@@ -74,8 +84,10 @@ class MainScreen : AppCompatActivity(), NavigationView.OnNavigationItemSelectedL
                 startActivity(intent)
             }
             logout ->{
-                //userSession = UserSession(getApplicationContext())
-                //userSession.LogOut()
+                mAuth.signOut()
+                val intent = Intent(this, AuthenticationActivity::class.java)
+                startActivity(intent)
+                finish()
             }
         }
         drawer_layout.closeDrawers()
