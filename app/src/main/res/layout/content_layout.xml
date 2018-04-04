@@ -20,6 +20,23 @@
         android:elevation="4dp"
         android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
         app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="bottom">
+        <EditText
+            android:id="@+id/name_to_find"
+            android:layout_width="@dimen/text_view_300dp"
+            android:layout_height="@dimen/text_view_30dp"
+            android:layout_gravity="bottom"/>
+        <ImageButton
+            android:id="@+id/find_book_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_search"/>
+
+    </LinearLayout>
 
     <!-- Resto de la interfaz de usuario -->
     <LinearLayout xmlns:custom="http://schemas.android.com/apk/res-auto"

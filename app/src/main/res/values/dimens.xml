@@ -14,4 +14,6 @@
     <dimen name="margin_6_dp">6dp</dimen>
     <dimen name="margin_3_dp">3dp</dimen>
     <dimen name="margin_4_dp">4dp</dimen>
+    <dimen name="text_view_300dp">300dp</dimen>
+    <dimen name="text_view_30dp">40dp</dimen>
 </resources>

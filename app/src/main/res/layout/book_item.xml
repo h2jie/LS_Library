@@ -7,7 +7,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Hola"
-        android:layout_marginStart="@dimen/margin_6_dp"/>
+        android:layout_marginStart="@dimen/margin_6_dp"
+        android:layout_marginTop="@dimen/margin_10"/>
     <ImageView
         android:id="@+id/item_image"
         android:layout_width="@dimen/marginTop_50"

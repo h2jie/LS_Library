@@ -9,24 +9,28 @@ import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.view.Gravity
 import android.view.MenuItem
+import android.view.View
 import android.widget.TextView
 import com.example.hh.salle_library.R.id.*
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.activity_main_screen.*
 import kotlinx.android.synthetic.main.content_layout.*
 
-class MainScreen : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener, taskCompletedListenner {
+class MainScreen : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener, taskCompletedListenner, View.OnClickListener{
+
 
     var bookList : ArrayList<Book> = ArrayList()
+    var bookName : String = "Harry"
+
+    companion object {
+        val BOOKNAME = "bookname"
+    }
 
 
     private lateinit var recyclerView : RecyclerView
     private  lateinit var bookAdapter: BookAdapter
 
-    //var userSession= UserSession(this)
     var mAuth = FirebaseAuth.getInstance()
-
-
 
 
     private var mCallback : taskCompletedListenner = this
@@ -35,13 +39,18 @@ class MainScreen : AppCompatActivity(), NavigationView.OnNavigationItemSelectedL
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        var myTask = GettingBooksTask("fools", mCallback)
+        var intent = getIntent()
+        if (intent.getStringExtra(BOOKNAME) != null) {
+            bookName = intent.getStringExtra(BOOKNAME)
+        }
+        var myTask = GettingBooksTask(bookName, mCallback)
         myTask.execute()
 
-
-
-
         setContentView(R.layout.activity_main_screen)
+
+        name_to_find.setText(bookName)
+
+        find_book_btn.setOnClickListener(this)
         nav_menu.setNavigationItemSelectedListener(this)
         setSupportActionBar(appbar)
         supportActionBar!!.setHomeAsUpIndicator(R.drawable.ic_menu)
@@ -67,6 +76,9 @@ class MainScreen : AppCompatActivity(), NavigationView.OnNavigationItemSelectedL
         }
 
     }
+
+
+
 
     override fun taskCompleted(mList: ArrayList<Book>){
         for (i in 0 until mList.size){
@@ -102,5 +114,14 @@ class MainScreen : AppCompatActivity(), NavigationView.OnNavigationItemSelectedL
             }
         }
         return super.onOptionsItemSelected(item)
+    }
+
+    override fun onClick(v: View?) {
+        bookName = name_to_find.text.toString()
+        var intent = Intent(applicationContext, MainScreen::class.java)
+        intent.putExtra(BOOKNAME,bookName)
+        startActivity(intent)
+        this.finish()
+
     }
 }

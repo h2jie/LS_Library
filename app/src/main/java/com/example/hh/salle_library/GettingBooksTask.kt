@@ -27,7 +27,9 @@ class GettingBooksTask(var name : String, mCallBack : taskCompletedListenner) : 
         var failed : Boolean = false
 
         var client = OkHttpClient()
-
+        if (name.isEmpty()){
+            name = "Happy"
+        }
         var request = Request.Builder()
                 .url("https://www.googleapis.com/books/v1/volumes?q=$name&maxResults=20&key=AIzaSyA0MK7Suuz3RhOUzMhKfmHt6m5urhgJT-Q")
                 .build()
@@ -75,7 +77,15 @@ class GettingBooksTask(var name : String, mCallBack : taskCompletedListenner) : 
                         itemAuthor = "Anonimo"
                     }
 
-                    var itemDate = mJsonObjectVolumeInfo["publishedDate"] as String
+                    var itemDate : String
+                    try {
+                        itemDate = mJsonObjectVolumeInfo["publishedDate"] as String
+
+                    }catch (e : JSONException){
+                        itemDate = "Fecha no definida"
+
+                    }
+
                     var itemDesc : String
 
                     try {
@@ -84,11 +94,18 @@ class GettingBooksTask(var name : String, mCallBack : taskCompletedListenner) : 
                         itemDesc = "Descripción no disponible"
                     }
 
-                    var mJasonObjectVolumeImg : JSONObject = mJsonObjectVolumeInfo.getJSONObject("imageLinks")
 
-                    var itemImgUrlStr = mJasonObjectVolumeImg["smallThumbnail"] as String
-                    var itemImgUrl = URL(itemImgUrlStr)
+                    var itemImgUrlStr : String
+                    var itemImgUrl : URL
+                    try {
+                        var mJasonObjectVolumeImg : JSONObject = mJsonObjectVolumeInfo.getJSONObject("imageLinks")
+                        itemImgUrlStr = mJasonObjectVolumeImg["smallThumbnail"] as String
+                         itemImgUrl = URL(itemImgUrlStr)
 
+                    }catch (e : JSONException){
+                        itemImgUrlStr = "http://thai-dream.ru/themes/classic/images/no-img.jpg"
+                        itemImgUrl = URL(itemImgUrlStr)
+                    }
                     var book = Book(itemImgUrl, itemTitle,itemAuthor,itemDate,itemDesc)
                     bookList.add(book)
                 }
