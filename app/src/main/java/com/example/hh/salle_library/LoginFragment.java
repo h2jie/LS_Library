@@ -34,6 +34,19 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
         // Required empty public constructor
     }
 
+
+    /**
+     * El metodo para inicializar los componentes que tenemos utilizar en este view,
+     * tambien verificamos si el usuario ya iniciado la session en la ultima vez, si
+     * si está iniciado la session salta a la pantalla main directamente, si no el usuario
+     * tiene que intoducir el nombre y contraseña del usuario para ir a pantalla de main
+     *
+     * @param inflater
+     * @param container
+     * @param savedInstanceState
+     * @return view
+     */
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -54,6 +67,15 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
 
         return view;
     }
+
+    /**
+     * Cuando el usuario click boton de login ejecutar este metodo,
+     * se comproba si el nombre y contraseña del usuario esta correcto,
+     * si está correcto salta a la pantalla de main, si no devuelve un
+     * mensaje de error.
+     *
+     * @param view
+     */
 
     @Override
     public void onClick(View view) {
@@ -81,6 +103,9 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
         }
     }
 
+    /**
+     * El metodo utilizamos cuando tenemos que saltar a pantalla de main
+     */
 
     void goToMainScreen() {
         Intent intent = new Intent(getActivity().getApplicationContext(), MainScreen.class);

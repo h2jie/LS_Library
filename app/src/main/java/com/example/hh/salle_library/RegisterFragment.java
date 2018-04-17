@@ -38,6 +38,16 @@ public class RegisterFragment extends Fragment implements View.OnClickListener {
     }
 
 
+    /**
+     * Inicializamos los componentes que hemos utilizado en este view
+     *
+     *
+     * @param inflater
+     * @param container
+     * @param savedInstanceState
+     * @return view
+     */
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -57,6 +67,14 @@ public class RegisterFragment extends Fragment implements View.OnClickListener {
         return view;
     }
 
+
+    /**
+     * Cuando el usuario click el boton Register, primero verificamos la contraseña
+     * que ha introducido el usuario cumple nuestras condiciones, si no cumple, muestra
+     * un mensaje de error, si cumple pasamos todos los datos al firebase para registrar
+     *
+     * @param view
+     */
     @Override
     public void onClick(View view) {
         final String name = et_username.getText().toString();
