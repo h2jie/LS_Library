@@ -19,6 +19,8 @@ import java.net.URL
  *
  * @property name Nombre del libro del cual se desea buscar información.
  * @property mCallBack Interfaz que comunica la clase con la actividad, y la cual se encarga de pasarle la información una vez se ha finalizado la tarea de recuperar información.
+ * @param bookList lista de libro
+ * @param delegate hace reload la lista
  */
 class GettingBooksTask(var name : String,var mCallBack : taskCompletedListenner) : AsyncTask<URL,Integer,ArrayList<Book>>() {
 
