@@ -14,10 +14,30 @@ import java.io.IOException
 import java.net.URL
 
 /**
- * Created by Bhupinder Kumar on 11/03/2018.
+ * Clase que se encarga de la gestión de la lista de libros.
+ *
+ * Esta clase es un adaptador personalizado para mostrar la lista.
+ *
+ * @property myBookList La lista de libros que se tienen que mostrar por pantalla.
+ * @property mContext Contexto actual
+ * @property from Para indicar desde que Activity se le llama
+ * @property mCallBack Interfaz para comunicar.
+ *
+ *
  */
 class BookAdapter(var myBookList : ArrayList<Book>, var mContext : Context, var from : String, var mCallBack : taskCompletedListenner?) : RecyclerView.Adapter<BookAdapter.MyViewHolder>(){
 
+    /**
+     * Clase holder
+     *
+     * @property v View del item, que contiene los componentes visuales.
+     * @property title Componente visual en el que se muestra el titulo del libro.
+     * @property author Componente visual en el que se muestra el autor del libro.
+     * @property desc Componente visual en el que se muestra la descripción del libro.
+     * @property date Componente visual en el que se muestra la fecha del estreno del libro.
+     *
+     * @constructor Crea un holder.
+     */
     class MyViewHolder (v : View) : RecyclerView.ViewHolder(v){
         var title = v.item_title
         var author = v.item_author
@@ -28,16 +48,25 @@ class BookAdapter(var myBookList : ArrayList<Book>, var mContext : Context, var 
         var delBtn = v.item_delete_btn
     }
 
+    /**
+     * Método que muestra los items del adaptador.
+     */
     override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): MyViewHolder{
         var itemVeiw = LayoutInflater.from(parent!!.context)
                 .inflate(R.layout.book_item, parent, false)
         return MyViewHolder(itemVeiw)
     }
 
+    /**
+     * Nos informa la cantidad de items que tenemos en la lista.
+     */
     override fun getItemCount(): Int {
         return myBookList.size
     }
 
+    /**
+     * Lo llama RecyclerView para mostrar los datos en una posición específica. El método se actualiza dependiendo del contenido del ViewHolder.
+     */
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         var book = myBookList[position]
         holder.title.text = book.bookTitle

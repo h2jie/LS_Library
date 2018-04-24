@@ -3,6 +3,7 @@
 apply plugin: 'kotlin-android'
 
 apply plugin: 'kotlin-android-extensions'
+    apply plugin: 'org.jetbrains.dokka'
 
     android {
         compileSdkVersion 26
@@ -20,7 +21,7 @@ apply plugin: 'kotlin-android-extensions'
                 proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             }
         }
-        buildToolsVersion '26.0.1'
+        buildToolsVersion '26.0.2'
     }
 
     dependencies {
@@ -42,4 +43,6 @@ apply plugin: 'kotlin-android-extensions'
     }
 
 
+
 apply plugin: 'com.google.gms.google-services'
+

@@ -13,15 +13,24 @@ import java.net.URI
 import java.net.URL
 
 /**
- * Created by Bhupinder Kumar on 11/03/2018.
+ * Clase que nos permite realizar tareas asincronas
+ *
+ * Esta clase realiza la tarea de hacer una llamada a la API de Google Books, para recuperar los datos de los libros por su nombre.
+ *
+ * @property name Nombre del libro del cual se desea buscar información.
+ * @property mCallBack Interfaz que comunica la clase con la actividad, y la cual se encarga de pasarle la información una vez se ha finalizado la tarea de recuperar información.
  */
-class GettingBooksTask(var name : String, mCallBack : taskCompletedListenner) : AsyncTask<URL,Integer,ArrayList<Book>>() {
+class GettingBooksTask(var name : String,var mCallBack : taskCompletedListenner) : AsyncTask<URL,Integer,ArrayList<Book>>() {
 
     var bookList : ArrayList<Book> = ArrayList<Book>()
     var delegate = mCallBack
 
 
-
+    /**
+     * Método en el que se realiza toda tarea asincrona.
+     *
+     * Buscar información sobre libros.
+     */
     override fun doInBackground(vararg p0: URL?): ArrayList<Book>? {
 
         var failed : Boolean = false
@@ -114,6 +123,11 @@ class GettingBooksTask(var name : String, mCallBack : taskCompletedListenner) : 
         return bookList
     }
 
+    /**
+     * Método que se ejecuta una vez finalizada la tarea asincrona.
+     *
+     * En este caso nos disponemos de pasar la información recuperada a la actividad.
+     */
     override fun onPostExecute(result: ArrayList<Book>?) {
         super.onPostExecute(result)
         if (result != null) {
