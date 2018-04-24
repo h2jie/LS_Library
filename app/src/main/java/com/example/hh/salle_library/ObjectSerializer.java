@@ -83,6 +83,7 @@ public class ObjectSerializer {
     /**
      * El metodo sirve para convertir el dato de tipo string a byte
      * utilizamos para cuando tenemos que convertir un string a byte
+     *
      * @param str
      * @return byte
      */

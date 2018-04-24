@@ -5,7 +5,7 @@ import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentPagerAdapter
 
 /**
- * Created by HangjieHuang on 2018/3/7.
+ * Clase adaptador que controla que fragment se muestra por pantalla.
  */
 class TabsAdapter(manager: FragmentManager) : FragmentPagerAdapter(manager){
 

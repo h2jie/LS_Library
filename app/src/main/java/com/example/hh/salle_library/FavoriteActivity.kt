@@ -11,7 +11,12 @@ import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import kotlinx.android.synthetic.main.activity_favorite.*
 
-
+/**
+ * Clase que gestiona la pantalla de los favoritos.
+ *
+ * @property bookList Lista que contiene los libros favoritos del usuario actual.
+ * @property recyclerView
+ */
 class FavoriteActivity : AppCompatActivity(), taskCompletedListenner{
 
     var bookList : ArrayList<Book> = ArrayList()

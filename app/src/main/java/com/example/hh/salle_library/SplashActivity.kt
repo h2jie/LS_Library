@@ -5,6 +5,9 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 
+/**
+ * Clase que gestina la pantalla inicial que se muestra durante unos varios segundos.
+ */
 class SplashActivity : AppCompatActivity() {
 
 
